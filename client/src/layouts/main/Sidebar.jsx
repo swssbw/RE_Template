@@ -7,7 +7,7 @@ const Aside = styled.div`
   position: absolute;
   height: 100%;
   width: 215px;
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
   color: #000;
   border-right: 1px solid #f5f5f5;
 `
@@ -22,7 +22,7 @@ const Sidebar = () => {
         <Menu.Item key="2">
           <NavLink to="/test2">Option 2</NavLink>
         </Menu.Item>
-        <Menu.SubMenu key="Monitoring" title="Option 3">
+        <Menu.SubMenu key="3" title="Option 3">
           <Menu.Item key="/Monitoring/DisplayAD">Sub 1</Menu.Item>
           <Menu.Item key="/Monitoring/SearchAD">Sub 2</Menu.Item>
         </Menu.SubMenu>

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../_modules/userModule';
+import { useHistory } from "react-router-dom";
 
 const Contents = styled.div`
   margin: 100px auto;
@@ -11,6 +14,23 @@ const Contents = styled.div`
 `;
 
 const Login = () => {
+  const history = useHistory();
+  const [username, setUsername] = useState("");
+  const dispatch = useDispatch();
+  const { user , isAuthenticated } = useSelector(state => state.user);
+
+  useEffect(() => {
+    if(user) {
+      console.log(user);
+      console.log(isAuthenticated);
+      history.push('/test1');
+    }
+  }, [dispatch, user, isAuthenticated])
+
+  function loginHandler() {
+    dispatch(login(username));
+  }
+
   return (
     <Contents>
       <Form
@@ -19,6 +39,7 @@ const Login = () => {
       initialValues={{
         remember: true,
       }}
+      onSubmitCapture={() => loginHandler()}
     >
       <Form.Item
         name="username"
@@ -29,7 +50,7 @@ const Login = () => {
           },
         ]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
       </Form.Item>
       <Form.Item
         name="password"

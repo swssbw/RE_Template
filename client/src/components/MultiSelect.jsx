@@ -79,7 +79,6 @@ const MultiSelect = () => {
       </Select>
       <RangePicker picker="month" />
       <Table columns={columns} dataSource={data} />
-      <button onClick={()=>{}}></button>
     </>
   )
 }
